@@ -1,0 +1,16 @@
+{
+  "name": "mongodb-qspider",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type":"commonjs",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^7.9.1"
+  }
+}
