@@ -20,3 +20,39 @@
 ---->db.dept.find({},{dname:1,_id:0});
 # 10. WAQTD DNAME AND LOCATION PRESENT IN DEPT TABLE 
 ---->db.dept.find({},{dname:1,loc:1,_id:0});
+
+
+
+# ALIAS  QUESTION
+
+# 1. WAQTD employee name, job and annual salary of all employees. Display the calculated field as annual_salary.
+--->db.emp.find({},{ename:1,sal:1,job:1,_id:0,annual_salary:{$multiply:["$sal",12]}});
+
+# 2. WAQTD employee number, employee name and half of their salary. Display the calculated field as half_salary.
+--->db.emp.find({},{_id:0,empno:1,ename:1,halfyearly_sal:{$divide:["$sal",2]}});
+
+# 3. WAQTD employee name, hiredate and salary after adding an annual bonus of 2000. Display the calculated field as salary_with_bonus.
+--->db.emp.find({},{_id:0,ename:1,hiredate:1,salary_with_bonus:{$add:["$sal",2000]}});
+
+# 4. WAQTD employee number, job and salary after a hike of 10%. Display the calculated field as hiked_salary.
+--->db.emp.find({},{_id:0,empno:1,job:1,sal:1,hiked_salary:{$add:["$sal",{$multiply:["$sal",0.1]}]}});
+
+
+# 5.WAQTD employee name, manager ID and salary after a deduction of 25%. Display the calculated field as reduced_salary.
+--->db.emp.find({},{_id:0,ename:1,mgr:1,sal:1,reduced_salary:
+{$subtract:["$sal",{$multiply:["$sal",0.25]}]}})
+
+# 6.WAQTD employee name, department number and salary after a monthly hike of 50. Display the calculated field as revised_salary.
+--->db.emp.find({},{_id:0,ename:1,deptno:1,sal:1,revised_salary:{$add:["$sal",50]}});
+
+# 7.WAQTD employee name, job and annual salary after a deduction of 10%. Display the calculated field as annual_salary_after_deduction.
+--->db.emp.find({},{_id:0,ename:1,job:1,annual_salary_after_deduction{$subtract:[{$multiply:["$sal",12]},{$multiply:["$sal",12,0.1]}]}});
+
+Calculation
+monthly salary = 800.
+- Annual salary = 800 × 12 = 9600
+- 10% deduction = 960
+- Final annual salary = 9600 − 960 = 8640
+
+# 8. WAQTD employee number, employee name, salary and commission along with their total monthly income (SAL + COMM). Display the calculated field as total_monthly_income.
+--->db.emp.find({},{_id:0})
