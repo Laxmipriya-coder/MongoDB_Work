@@ -55,4 +55,52 @@ monthly salary = 800.
 - Final annual salary = 9600 − 960 = 8640
 
 # 8. WAQTD employee number, employee name, salary and commission along with their total monthly income (SAL + COMM). Display the calculated field as total_monthly_income.
---->db.emp.find({},{_id:0})
+--->db.emp.find({},{_id:0});
+
+
+
+------------------------------------------------------------------------------------------------
+# 1. WAQTD THE ANNUAL SALARY OF THE EMPLOYEE WHO NAME IS SMITH
+--->db.emp.find({ename:"smith"},{ename:1,sal:1,_id:0,annual_salary:{$multiply:["$sal",12]}});
+
+# 2.
+---> db.emp.find({job:"clerk"},{ename:1,job:1,_id:0});
+
+# 3.
+--->db.emp.find({job:"salesman"},{sal:1,_id:0});
+
+# 4. 
+--->db.emp.find({sal:{$gt:2000}},{_id:0});
+
+# 5.
+--->db.emp.find({ename:"jones"},{_id:0});
+
+# 6. 
+--->db.emp.find({hiredate:{$gt:new Date("1981-01-01")}},{_id:0});
+
+# 7. WAQTD NAME AND SAL ALONG WITH HIS ANNUAL SALARY IF THE ANNUAL SALARY IS MORE THAN 12000 
+ 
+
+# 8. 
+--->db.emp.find({deptno:30},{_id:0,empno:1});
+
+# 9. 
+--->db.emp.find({hiredate:{$lt:ISODate("1981-01-01")}},{_id:0,ename:1,hiredate:1});
+
+# 10.
+--->db.emp.find({job:"manager"},{_id:0});
+
+# 11.
+--->db.emp.find({comm:1400},{_id:0,ename:1,sal:1});
+
+# 12.
+--->
+
+# 13.
+--->db.emp.find({hiredate:{$lt:ISODate("1987-01-01")}},{_id:0,empno:1});
+
+# 14.
+--->db.emp.find({job:"analyst:},{_id:0,});
+
+# 15.
+--->db.emp.find({sal:{$gt:2000}},{_id:0});
