@@ -104,3 +104,65 @@ monthly salary = 800.
 
 # 15.
 --->db.emp.find({sal:{$gt:2000}},{_id:0});
+
+
+#### Comparison OPerator
+
+# $AND
+---------------------------------------------------------------------------------------
+# Explicit $and
+db.emp.find({
+    $and:[{sal:{
+        $gt:1500
+    }},
+    {job:"salesman"}]
+},{ename:1,sal:1,job:1,_id:0});
+
+# Implicit $and
+db.emp.find({sal:{$gt:1500},job:"salesman"},{})
+
+# WAQTD NAME,SAL , JOB , DEPTNO OF ALL THE EMPLOYEE WHO IS WORKING AS A MANAGER IN DEPTNO 20
+--->db.emp.find({
+    $and:[{job:"manager"},{deptno:20}]
+},{enmae:1,sal:1,job:1,deptno:1,_id:0});
+
+## ANOTHER WAY
+--->db.emp.find({job:"manager",deptno:20},{ename:1,sal:1,deptno:1,job:1,_id:0})
+
+
+# $OR
+---------------------------------------------------------------------------------
+# WAQTD NAME,DEPTNO OF ALL THE EMPLOYEE WHO IS WORKING IN DEPT NO 10 OR 20.
+---> db.emp.find({$or:[
+    {deptno:10},{deptno:20}
+]},{ename:1,deptno:1,_id:0})
+
+# WAQTD NAME AND JOB OF ALL EMPLOYEE WHO IS WORKING AS A MANAGER OR ANALYST
+--->db.emp.find({$or:[
+    {job:"manager"},{job:"analyst"}
+]},{ename:1,job:1,_id:0})
+ 
+
+# $NOT
+----------------------------------------------------------------------------------------
+# WAQTD NAME AND SAL OF THE EMPLOYEE WHO IS NOT EARNING MORE THAN 1500
+--->db.emp.find({
+    sal:{$not:{$gt:1500}
+}},{ename:1,sal:1,_id:0})
+
+# $NOR
+------------------------------------------------------------------------------------------
+# WAQTD NAME AND DEPT OF THE EMPLYOYEE WHO IS NOT WORKING IN DEPT NO IN 10 AND 20
+
+--->db.emp.find({$and:[
+    {deptno:{$ne:10}},
+    {deptno:{$ne:20}}
+]},{ename:1,deptno:1,_id:0});
+
+
+--->
+
+
+To avoid or operator we use $in 
+
+# 
