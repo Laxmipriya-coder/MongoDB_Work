@@ -165,4 +165,178 @@ db.emp.find({sal:{$gt:1500},job:"salesman"},{})
 
 To avoid or operator we use $in 
 
-# 
+# 1.WAQTD DETAILS OF THE EMPLOYEES WORKING AS CLERK AND EARNING LESS THAN 1500 
+--->db.emp.find({
+    $and:[
+        {job:"clerk"},
+        {sal:{$lt:1500}}
+    ]
+},{_id:0})
+
+# 2. 
+--->db.emp.find({$and:[{job:"manager"},{deptno:30}]},{ename:1,hiredate:1,_id:0})
+
+# 3.
+--->db.emp.find({
+    $and: [
+        { deptno: 30 },
+        { job: "SALESMAN" },
+        { comm: { $lt: 1000 } }
+    ]
+},{_id:0});
+
+# 4.
+--->db.emp.find({
+    $or:[
+        {deptno:30},
+        {job:"salesman"}
+    ]
+},{_id:0});
+
+# 5.
+--->db.emp.find({
+    $and:[
+        sal:{$lt:1100},
+        {job:"clerk"}
+    ]
+},{ename:1,_id:0});
+
+# 6.
+--->db.emp.find({
+    $and:[
+        {deptno:20},
+        {sal:{$gt:1100}}
+    ]
+},{ename:1,sal:1,deptno:1,_id:0,annual_salary:{$multiply:["$sal",12]}});
+
+
+# 7.
+--->db.emp.find({
+    $and:[
+        {job:"manager"},
+        {deptno:20}
+    ]
+},{empno:1,ename:1,_id:0});
+
+# 8. 
+--->db.emp.find({
+    $or:[
+        {deptno:20},
+        {deptno:30}
+    ]
+},{_id:0})
+
+# 9. 
+--->db.emp.find({
+    $and:[
+        {job:"analyst"},
+        {deptno:20}
+    ]
+},{_id:0});
+
+# 10.
+--->db.emp.find({
+    $and:[
+        {job:"president"},
+        {sal:4000}
+    ]
+},{_id:0});
+
+# 11.
+--->db.emp.find({
+    $and:[
+        {job:"clerk"},
+        {$or:[
+            {deptno:10},
+            {deptno:20}
+        ]}
+    ]
+},{ename:1,deptno:1,job:1,_id:0});
+
+# 12 WAQTD DETAILS OF EMPLOYEES WORKING AS CLERK OR MANAGER IN DEPT 10
+--->db.emp.find({
+    $and: [
+        { deptno: 10 },
+        {$or: [{ job: "CLERK" },{ job: "MANAGER" }
+        ]}]}, 
+        {_id: 0});
+
+# 13 .
+--->db.emp.find({
+    $or:[
+        {deptno:10},
+        {deptno:20},
+        {deptno:30},
+        {deptno:40}
+    ]
+},{ename:1,_id:0})
+
+# 14.
+--->db.emp.find({
+    $or:[
+        {empno:7902},
+        {empno:7839}
+    ]
+},{_id:0});
+
+# 15.
+--->db.emp.find({
+    $or:[
+        {job:"manager"},
+        {job:"salesman"},
+        {job:"clerk"}
+    ]
+},{_id:0});
+
+# 16 WAQTD NAMES OF THE EMPLOYEESHIRED AFTER 81 AND BEFORE 87
+--->db.emp.find({
+    $and:[
+        {hiredate:{$gt:ISODate("1981-12-31")}},
+        {hiredate:{$lt:ISODate("1987-01-01")}}
+    ]
+},{ename:1,_id:0});
+
+# 17.
+--->db.emp.find({
+    $and:[
+        {sal:{$gt:1250}},
+        {sal:{$lt:3000}}
+    ]
+},{_id:0});
+
+# 18.
+--->db.emp.find({
+    $and:[
+        {hiredate:{$gt:ISODate("1981-12-31")}},
+        {$or:[
+            {deptno:10},
+            {deptno:30}
+        ]}
+    ]
+},{_id:0,ename:1})
+
+# 19.
+--->db.emp.find({
+    $and:[
+        {$or:[
+            {job:"manager"},
+            {job:"clerk"}
+        ]},
+        {$or:[
+            {deptno:10},
+            {deptno:20}
+        ]}
+    ]
+},{ename:1,_id:0,annual_salary:{$multiply:["$sal",12]}});
+
+# 20.
+--->db.emp.find({
+    $and:[
+        {comm:{$gt:1000}},
+        {$or:[
+            {sal:{$gt:1000}},
+            {sal:{$lt:4000}}
+        ]}
+    ]
+},{_id:0})
+
